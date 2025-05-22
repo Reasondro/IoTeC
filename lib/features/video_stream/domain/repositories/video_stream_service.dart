@@ -29,6 +29,9 @@ class VideoStreamService {
     _channel!.stream.listen(
       (data) {
         if (data is List<int>) {
+          print(
+            "VideoStreamService: Received bytes with length: ${data.length}",
+          );
           _framesController.add(Uint8List.fromList(data));
         } else if (data is String) {
           print("Received string data: $data");

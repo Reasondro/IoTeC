@@ -13,7 +13,8 @@ class VideoStreamCubit extends Cubit<VideoStreamState> {
   StreamSubscription? _disconnectSubscription;
 
   // ? example url
-  final String _wsUrl = "ws://10.0.2.2:8000/ws/client";
+  // final String _wsUrl = "ws://10.0.2.2:8000/ws/client";
+  final String _wsUrl = "ws://10.0.2.2:8001/ws/client_dummy";
   // ? physical device testing --> replace 10.0.2.2 with computer's local IP.
   // ? exmplae: "ws://192.168.1.100:8000/ws/client"
 
@@ -35,6 +36,9 @@ class VideoStreamCubit extends Cubit<VideoStreamState> {
       _framesSubscription?.cancel();
       _framesSubscription = _videoStreamService.framesStream.listen(
         (frameData) {
+          print(
+            "VideoStreamCubit: Emitting VideoStreamStreaming with frameData length: ${frameData.length}",
+          );
           emit(VideoStreamStreaming(frameData));
         },
         onError: (error) {
