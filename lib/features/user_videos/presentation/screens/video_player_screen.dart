@@ -62,27 +62,36 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Colors.black),
-      child: Center(
-        child:
-            _isLoading
-                ? const CircularProgressIndicator(color: Colors.white)
-                : _errorMessage != null
-                ? Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    _errorMessage!,
-                    style: const TextStyle(color: Colors.red, fontSize: 16),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Video Player"),
+        backgroundColor: Colors.black,
+      ),
+      backgroundColor: Colors.black,
+      body: Container(
+        child: Center(
+          child:
+              _isLoading
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : _errorMessage != null
+                  ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      _errorMessage!,
+                      style: const TextStyle(color: Colors.red, fontSize: 16),
+                    ),
+                  )
+                  : _chewieController != null &&
+                      _chewieController!
+                          .videoPlayerController
+                          .value
+                          .isInitialized
+                  ? Chewie(controller: _chewieController!)
+                  : const Text(
+                    "Could not initialize video player.",
+                    style: TextStyle(color: Colors.white),
                   ),
-                )
-                : _chewieController != null &&
-                    _chewieController!.videoPlayerController.value.isInitialized
-                ? Chewie(controller: _chewieController!)
-                : const Text(
-                  "Could not initialize video player.",
-                  style: TextStyle(color: Colors.white),
-                ),
+        ),
       ),
     );
   }
