@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iotec/app/layouts/destinations.dart';
+import 'package:iotec/app/routing/routes.dart';
 
 class LayoutScaffoldWithNav extends StatelessWidget {
-  const LayoutScaffoldWithNav({super.key, required this.navigationShell});
+  const LayoutScaffoldWithNav({
+    super.key,
+    required this.navigationShell,
+    required this.title,
+  });
 
   final StatefulNavigationShell navigationShell;
+  final String title;
+
   @override
   Widget build(BuildContext context) {
+    String appBarTitle = "";
+    if (title == Routes.home) {
+      appBarTitle = "Home";
+    } else {
+      appBarTitle = "Videos";
+    }
     return Scaffold(
-      // appBar: AppBar(title: Text("LayoutScaffold")),
+      appBar: AppBar(title: Text(appBarTitle)),
       // resizeToAvoidBottomInset: false,
       body:
       //  SafeArea(child:

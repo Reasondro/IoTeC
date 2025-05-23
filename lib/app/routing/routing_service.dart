@@ -9,21 +9,6 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(
   debugLabel: "root",
 );
 
-// class GoRouterRefreshStream extends ChangeNotifier {
-//   late final StreamSubscription<dynamic> _subscription;
-//   GoRouterRefreshStream(Stream<dynamic> stream) {
-//     _subscription = stream.asBroadcastStream().listen(
-//       (dynamic _) => notifyListeners(),
-//     );
-//   }
-
-// @override
-// void dispose() {
-//   _subscription.cancel();
-//   super.dispose();
-// }
-// }
-
 class RoutingService {
   RoutingService();
   late final GoRouter router = GoRouter(
@@ -38,7 +23,10 @@ class RoutingService {
               BuildContext context,
               GoRouterState state,
               StatefulNavigationShell navigationShell,
-            ) => LayoutScaffoldWithNav(navigationShell: navigationShell),
+            ) => LayoutScaffoldWithNav(
+              navigationShell: navigationShell,
+              title: state.name!,
+            ),
         branches: <StatefulShellBranch>[
           // ? branch 1: Home
           StatefulShellBranch(
