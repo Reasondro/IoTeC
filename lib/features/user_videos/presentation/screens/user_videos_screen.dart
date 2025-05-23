@@ -23,17 +23,9 @@ class _UserVideosScreenState extends State<UserVideosScreen> {
 
   Future<List<FileObject>> _fetchVideosFromBucket() async {
     try {
-      // List files from the root of the bucket.
-      // If your videos are in a subfolder, specify the path: .list(path: 'foldername')
       final List<FileObject> files =
           await supabase.storage.from(_bucketName).list();
 
-      // Filter for actual files (not empty placeholder folders if any)
-      // and potentially by file type if needed, though Supabase storage list
-      // primarily returns objects that are files.
-      // Buckets themselves don't usually contain empty folders unless created with placeholder objects.
-      // For this example, we assume all listed items are video files.
-      // You might want to filter by metadata or name if needed.
       return files
           .where((file) => file.name != '.emptyFolderPlaceholder')
           .toList();

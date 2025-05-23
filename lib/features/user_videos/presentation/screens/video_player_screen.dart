@@ -62,13 +62,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Video Player"),
-        backgroundColor: Colors.black,
-      ),
-      backgroundColor: Colors.black,
-      body: Center(
+    return Container(
+      decoration: BoxDecoration(color: Colors.black),
+      child: Center(
         child:
             _isLoading
                 ? const CircularProgressIndicator(color: Colors.white)
