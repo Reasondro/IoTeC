@@ -14,8 +14,8 @@ class VideoStreamCubit extends Cubit<VideoStreamState> {
 
   // ? example url
   // final String _wsUrl = "ws://10.0.2.2:8000/ws/client";
-  final String _wsUrl = "ws://10.0.2.2:8001/ws/client_dummy";
-  // ? physical device testing --> replace 10.0.2.2 with computer's local IP.
+  // final String _wsUrl = "ws://10.0.2.2:8001/ws/client_dummy";
+  final String _wsUrl = "ws://10.0.2.2:8000/ws/client";
   // ? exmplae: "ws://192.168.1.100:8000/ws/client"
 
   VideoStreamCubit(this._videoStreamService) : super(VideoStreamInitial()) {
@@ -32,7 +32,7 @@ class VideoStreamCubit extends Cubit<VideoStreamState> {
     emit(VideoStreamConnecting());
     try {
       await _videoStreamService.connect(_wsUrl);
-      // ? service  handles adding frames to its stream.
+      // ? service  hanldes adding frames to its stream.
       _framesSubscription?.cancel();
       _framesSubscription = _videoStreamService.framesStream.listen(
         (frameData) {
