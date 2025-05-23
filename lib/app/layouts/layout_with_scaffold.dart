@@ -18,8 +18,10 @@ class LayoutScaffoldWithNav extends StatelessWidget {
     String appBarTitle = "";
     if (title == Routes.home) {
       appBarTitle = "Home";
+      print("Should be home: $title");
     } else {
       appBarTitle = "Videos";
+      print("Should be videos: $title");
     }
     return Scaffold(
       appBar: AppBar(title: Text(appBarTitle)),

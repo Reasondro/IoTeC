@@ -25,7 +25,7 @@ class RoutingService {
               StatefulNavigationShell navigationShell,
             ) => LayoutScaffoldWithNav(
               navigationShell: navigationShell,
-              title: state.name!,
+              title: state.matchedLocation,
             ),
         branches: <StatefulShellBranch>[
           // ? branch 1: Home
